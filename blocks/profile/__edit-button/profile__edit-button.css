@@ -1,0 +1,27 @@
+.profile__edit-button {
+  margin: auto 0;
+  background-image: url(../../../images/edit-button.svg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: #000;
+  border-radius: 2px;
+  width: 24px;
+  height: 24px;
+  border: none;
+}
+
+
+.profile__edit-button:link {
+  transition: opacity .2s linear;
+}
+.profile__edit-button:hover {
+  opacity: .6;
+}
+
+@media screen and (min-width: 320px) and (max-width: 900px) {
+  .elements {
+    grid-template-columns: repeat(1, 282px)
+  }
+}
