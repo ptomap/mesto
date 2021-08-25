@@ -12,7 +12,6 @@
   border: none;
 }
 
-
 .profile__edit-button:link {
   transition: opacity .2s linear;
 }
@@ -22,6 +21,6 @@
 
 @media screen and (min-width: 320px) and (max-width: 900px) {
   .elements {
-    grid-template-columns: repeat(1, 282px)
+    grid-template-columns: repeat(1, 282px);
   }
 }
