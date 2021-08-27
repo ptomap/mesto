@@ -5,11 +5,13 @@
   background-repeat: no-repeat;
   cursor: pointer;
   background-color: #000;
-  border-radius: 2px;
   width: 150px;
   height: 50px;
   border: none;
   margin: auto 0 auto auto;
+  padding: 0;
+  object-fit: cover;
+  object-fit: cover;
 }
 
 .profile__add-button:link {
@@ -19,8 +21,9 @@
   opacity: .6;
 }
 
-@media screen and (min-width: 320px) and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .profile__add-button {
-    margin: auto;
+    width: 282px;
+    margin: 0 auto;
   }
 }
