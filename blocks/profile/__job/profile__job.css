@@ -1,7 +1,7 @@
 .profile__job {
   font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 18px;
   color: #fff;
   margin: 16px 0 0;
   text-overflow: ellipsis;
@@ -12,7 +12,7 @@
 @media screen and (max-width: 900px) {
   .profile__job {
     font-size: 14px;
-    line-height: 17px;
+    line-height: 14px;
     text-align: center;
     margin: 14px 0 0;
   }
