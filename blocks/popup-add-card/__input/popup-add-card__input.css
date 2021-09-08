@@ -1,4 +1,4 @@
-.popup-photo__input {
+.popup-add-card__input {
   width: 100%;
   height: 27px;
   font-weight: 400;
@@ -11,12 +11,12 @@
   margin: 0 auto;
 }
 
-.popup-photo__input:last-of-type {
+.popup-add-card__input:last-of-type {
   margin: 30px auto 48px;
 }
 
 @media screen and (max-width: 900px) {
-  .popup-photo__input:last-of-type {
+  .popup-add-card__input:last-of-type {
     margin: 30px auto 45px;
   }
 }

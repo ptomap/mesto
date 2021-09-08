@@ -1,4 +1,4 @@
-.popup-photo__close{
+.popup-add-card__close{
   background: url(../../../images/closeicon.svg);
   background-size: cover;
   background-position: center;
@@ -13,15 +13,15 @@
   top: -40px;
 }
 
-.popup-photo__close:link {
+.popup-add-card__close:link {
   transition: opacity .2s linear;
 }
-.popup-photo__close:hover {
+.popup-add-card__close:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 500px) {
-  .popup-photo__close {
+  .popup-add-card__close {
     width: 20px;
     height: 20px;
     right: 0;
