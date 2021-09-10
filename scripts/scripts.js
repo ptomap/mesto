@@ -1,10 +1,10 @@
 const openProfileButton = document.querySelector('.profile__edit-button');
 //const popup = document.querySelector('.popup');
-const closeProfileButton = document.querySelector('.popup__close');
-const formElement = document.querySelector('.popup__form');
+const closeProfileButton = document.querySelector('.popup-profile__close');
+const formElement = document.querySelector('.popup-profile__form');
 //Значения в полях формы
-const nameInput = document.querySelector('.popup__input_type_name');
-const jobInput = document.querySelector('.popup__input_type_job');
+const nameInput = document.querySelector('.popup-profile__input_type_name');
+const jobInput = document.querySelector('.popup-profile__input_type_job');
 // Элементы из верстки, куда должны быть вставлены значения полей
 const profileName = document.querySelector('.profile__name');
 const jobName = document.querySelector('.profile__job');
@@ -22,7 +22,7 @@ const cardPopup = document.querySelector('.popup-add-card');
 //Для добавления карточек
 const cardsContainer = document.querySelector('.elements');
 const postTemplate = document.querySelector('#card-template').content;
-const postingFormElement = document.querySelector('.posting__form');
+const postingFormElement = document.querySelector('.popup-add-card__form');
 const titleCardInput = document.querySelector('.popup-add-card__input_type_title');
 const linkCardInput = document.querySelector('.popup-add-card__input_type_link');
 //массив для первичного наполнения
@@ -69,15 +69,15 @@ openProfileButton.addEventListener("click", openProfilePopup = () => {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent; // Значения полей jobInput и nameInput из верстки при октрытии попапа
   jobInput.value = jobName.textContent;
+});
 
 //отменяем стандартную работу формы и вставляем значения в верстку
-  formElement.addEventListener("submit", submitProfileHandler = (evt) => {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value; // Новые значения из формы вставляем в вертку
-    jobName.textContent = jobInput.value;
-    closePopup(profilePopup)
-  })
-});
+formElement.addEventListener("submit", submitProfileHandler = (evt) => {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value; // Новые значения из формы вставляем в вертку
+  jobName.textContent = jobInput.value;
+  closePopup(profilePopup)
+})
 
 //закрытие попапа для редактированяи профиля по кнопке крестик
 closeProfileButton.addEventListener("click", closeProfilePopup = () => {
@@ -102,6 +102,8 @@ closePreviewButton.addEventListener("click", closePreviewPopup = () => {
 const renderCard = (data) => {
   cardsContainer.prepend(createCard(data));
 };
+
+
 //первичный рендеринг из массива в верстку
 initialCards.forEach((data) => {
   renderCard(data)
@@ -134,6 +136,9 @@ function createCard(data) {
 
   return card;
 }
+
+
+
 
 //открываем попап для содания карточки по кнопке
 openPopupCardButton.addEventListener("click", () => {
