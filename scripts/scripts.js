@@ -1,5 +1,5 @@
 const openProfileButton = document.querySelector('.profile__edit-button');
-//const popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup');
 const closeProfileButton = document.querySelector('.popup-profile__close');
 const formElement = document.querySelector('.popup-profile__form');
 //Значения в полях формы
@@ -25,6 +25,11 @@ const postTemplate = document.querySelector('#card-template').content;
 const postingFormElement = document.querySelector('.popup-add-card__form');
 const titleCardInput = document.querySelector('.popup-add-card__input_type_title');
 const linkCardInput = document.querySelector('.popup-add-card__input_type_link');
+//переменная для ошибок
+//const formError = formElement.querySelector(`.${nameInput.id}-error`);
+
+
+
 //массив для первичного наполнения
 const initialCards = [
   {
@@ -137,9 +142,6 @@ function createCard(data) {
   return card;
 }
 
-
-
-
 //открываем попап для содания карточки по кнопке
 openPopupCardButton.addEventListener("click", () => {
   openPopup(cardPopup);
@@ -148,5 +150,106 @@ openPopupCardButton.addEventListener("click", () => {
 closePopupCardButton.addEventListener("click", () => {
   closePopup(cardPopup);
 })
+
+
+
+
+//спринт 6
+
+const showError = (formElement, inputElement, errorMessage) => {
+//переменная для ошибок
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('popup__input_type_error'); //красное подчеркивание
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('.popup__input-error'); // текст ошибки
+};
+
+const hideError = (formElement, inputElement, ) => {
+  //переменная для ошибок
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('popup__input_type_error'); // удаляем подчеркивание
+  errorElement.classList.remove('.popup__input-error');
+  errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if(!inputElement.validity.valid) {
+    showError(formElement, inputElement, inputElement.validationMessage);
+  }else {
+    hideError(formElement, inputElement);
+  }
+
+};
+
+//массив попапов закрытие оверлэй и Esc
+const setPopup = () => {
+  const popupList = Array.from(document.querySelectorAll('.popup'));
+  popupList.forEach((popupElement) => {
+  popupElement.addEventListener('click', (e) => {
+    if(e.target === e.currentTarget) {
+      closePopup(popupElement);
+      }
+  })
+  document.addEventListener('keydown',  (evt) => {
+    if(evt.key==='Escape') {
+      closePopup(popupElement);
+    }
+})
+})
+}
+setPopup();
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+}
+
+
+const toggleBtnState = (inputList, buttonElement) => {
+  if(hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__submit_inactive')
+    buttonElement.disabled = true;
+  }else {
+    buttonElement.classList.remove('popup__submit_inactive');
+    buttonElement.disabled = false;
+  }
+}
+
+
+
+const setEventListenetrs = (formElement) => {
+  // Находим все поля внутри формы, которую передали аргументом
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__submit');
+  toggleBtnState(inputList, buttonElement);
+   // Обходим все элементы полученной коллекции
+   inputList.forEach((inputElement) => {
+    // каждому полю добавим обработчик события input
+    inputElement.addEventListener('input', () => {
+    // Внутри колбэка вызовем checkInputValidity,
+      // передав ей форму и проверяемый элемент
+      checkInputValidity(formElement, inputElement);
+      toggleBtnState(inputList, buttonElement);
+    });
+   })
+}
+
+
+const setForms = () => {
+  // Находим все формы с указанным классом в DOM
+  const formList = Array.from(document.querySelectorAll('.popup__form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+     evt.preventDefault();
+   });
+// Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы
+  setEventListenetrs(formElement);
+  });
+}
+// Вызовем функцию
+setForms();
+
+
 
 

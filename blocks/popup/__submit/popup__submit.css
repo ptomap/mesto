@@ -10,6 +10,7 @@
   margin: 0 auto 37px;
   cursor: pointer;
   border: 0;
+  margin-top: 48px;
 }
 
 .popup__submit:link {
