@@ -140,3 +140,21 @@ openPopupCardButton.addEventListener("click", () => {
 closePopupCardButton.addEventListener("click", () => {
   closePopup(cardPopup);
 });
+
+//массив попапов закрытие оверлэй и Esc
+const setPopup = (popupSelector) => {
+  const popupList = Array.from(document.querySelectorAll(popupSelector));
+  popupList.forEach((popupElement) => {
+    popupElement.addEventListener('click', (e) => {
+      if (popupElement.classList.contains('popup_opened') && e.target === e.currentTarget) {
+        closePopup(popupElement);
+      }
+    });
+    document.addEventListener('keydown', (evt) => {
+      if (popupElement.classList.contains('popup_opened') && evt.key === 'Escape') {
+        closePopup(popupElement);
+        document.removeEventListener('keydown', evt);
+      }
+    });
+  });
+};

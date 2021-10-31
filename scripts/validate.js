@@ -27,7 +27,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const hasIputValue = (inputList) => {
+const hasInputValue = (inputList) => {
   return inputList.every((inputElement) => {
     return !inputElement.value.length === 0;
   });
@@ -35,31 +35,13 @@ const hasIputValue = (inputList) => {
 
 const toggleBtnState = (formElement, inputList, submitButtonSelector, inactiveButtonClass) => {
   const buttonElement = formElement.querySelector(submitButtonSelector);
-  if (hasInvalidInput(inputList) || hasIputValue(inputList)) {
+  if (hasInvalidInput(inputList) || hasInputValue(inputList)) {
     buttonElement.classList.add(inactiveButtonClass);
     buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(inactiveButtonClass);
     buttonElement.disabled = false;
   }
-};
-
-//массив попапов закрытие оверлэй и Esc
-const setPopup = (popupSelector) => {
-  const popupList = Array.from(document.querySelectorAll(popupSelector));
-  popupList.forEach((popupElement) => {
-    popupElement.addEventListener('click', (e) => {
-      if (popupElement.classList.contains('popup_opened') && e.target === e.currentTarget) {
-        closePopup(popupElement);
-      }
-    });
-    document.addEventListener('keydown', (evt) => {
-      if (popupElement.classList.contains('popup_opened') && evt.key === 'Escape') {
-        closePopup(popupElement);
-        document.removeEventListener('keydown', evt);
-      }
-    });
-  });
 };
 
 const setEventListenetrs = (formElement, inputSelector, submitButtonSelector, inputErrorClass, errorClass, inactiveButtonClass) => {
