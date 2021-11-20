@@ -1,7 +1,10 @@
+import {FormValidator, config} from './FormValidator.js';
+import {Card} from './Card.js';
+
 const openProfileButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
 const closeProfileButton = document.querySelector('.popup-profile__close');
-const formElement = document.querySelector('.popup-profile__form');
+export const formElement = document.querySelector('.popup-profile__form');
 //Значения в полях формы
 const nameInput = document.querySelector('.popup-profile__input_type_name');
 const jobInput = document.querySelector('.popup-profile__input_type_job');
@@ -21,7 +24,7 @@ const profilePopup = document.querySelector('.popup-profile');
 const cardPopup = document.querySelector('.popup-add-card');
 //Для добавления карточек
 const cardsContainer = document.querySelector('.elements');
-const postTemplate = document.querySelector('#card-template').content;
+//const postTemplate = document.querySelector('.card-template').content;
 const postingFormElement = document.querySelector('.popup-add-card__form');
 const titleCardInput = document.querySelector('.popup-add-card__input_type_title');
 const linkCardInput = document.querySelector('.popup-add-card__input_type_link');
@@ -85,64 +88,46 @@ closeProfileButton.addEventListener("click", () => {
   closePopup(profilePopup);
 });
 
-//ПРЕВЬЮ карточек открытие и закрытие
-const previewCardPopup = (data) => {
-  openPopup(previewPopup);
-  document.querySelector('.popup-preview__image').src = data.link;
-  document.querySelector('.popup-preview__caption').textContent = data.name;
-}
-
-//закрытие попапа
-closePreviewButton.addEventListener("click", () => {
-  closePopup(previewPopup);
-});
-
 //СОЗДАНИЕ КАРТОЧЕК
 //функция рендера карточек (вставляем в верстку) результат функции создания карточки
-const renderCard = (data) => {
-  cardsContainer.prepend(createCard(data));
+const renderCard = (name, link) => {
+  const card = new Card (name, link,'.card-template').createCard();
+  cardsContainer.prepend(card);
+};
+
+
+// загрузка карточек из массива
+const renderInitialCards = (array) => {
+  array.forEach((item) => {
+    renderCard(item.name, item.link);
+  })
 };
 
 //первичный рендеринг из массива в верстку
-initialCards.forEach(renderCard);
+renderInitialCards(initialCards);
 
 //по кнопке сабмит вызываем рендеринг
 const cardFormSubmitHandle = (evt) => {
   evt.preventDefault();
-  renderCard({name: titleCardInput.value,link: linkCardInput.value});
+  renderCard(titleCardInput.value, linkCardInput.value);
   postingFormElement.reset();
   closePopup(cardPopup)
 };
 postingFormElement.addEventListener('submit', cardFormSubmitHandle);
 
-// функия создания карточки
-function createCard(data) {
-  const card = postTemplate.querySelector('.element').cloneNode(true);
-  card.querySelector('.element__image').src = data.link;
-  card.querySelector('.element__image').alt = 'Картинка';
-  card.querySelector('.element__title').textContent = data.name;
-  card.querySelector('.element__like-button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like-button_active'); // лайки
-  });
-  card.querySelector('.element__trash-button').addEventListener('click', function (evt) { //удаление
-    card.remove();
-  });
-  card.querySelector('.element__image').addEventListener('click', () => previewCardPopup(data)); //превью
-    return card;
-}
-
 //открываем попап для содания карточки по кнопке
 openPopupCardButton.addEventListener("click", () => {
-  enableValidation(config);
+  formAddCardValidator.enableValidation();
   openPopup(cardPopup);
 });
+
 //закрываем попап для содания карточки по кнопке
 closePopupCardButton.addEventListener("click", () => {
   closePopup(cardPopup);
 });
 
 //массив попапов закрытие оверлэй и Esc
-const setPopup = (popupSelector) => {
+export const setPopup = (popupSelector) => {
   const popupList = Array.from(document.querySelectorAll(popupSelector));
   popupList.forEach((popupElement) => {
     popupElement.addEventListener('click', (e) => {
@@ -158,3 +143,13 @@ const setPopup = (popupSelector) => {
     });
   });
 };
+
+// валидация формы профиля
+const formProfileValidator = new FormValidator(config, formElement);
+formProfileValidator.enableValidation();
+
+// валидация формы новой карточки
+const formAddCardValidator = new FormValidator(config, postingFormElement);
+formAddCardValidator.enableValidation();
+
+export {openPopup, closePopup, closePreviewButton, initialCards, previewPopup};
