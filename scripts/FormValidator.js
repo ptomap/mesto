@@ -1,5 +1,3 @@
-import {formElement, setPopup} from './index.js';
-
 export class FormValidator {
   constructor(config, formElement) {
     this._config = config;
@@ -45,7 +43,7 @@ export class FormValidator {
     });
   }
 
-  _toggleBtnState() {
+  toggleBtnState() {
     if (this._hasInvalidInput(this._inputList) || this._hasInputValue(this._inputList)) {
       this._buttonElement.classList.add(config.inactiveButtonClass);
       this._buttonElement.disabled = true;
@@ -56,7 +54,7 @@ export class FormValidator {
   }
 
   _setEventListenetrs() {
-    this._toggleBtnState();
+    this.toggleBtnState();
     // Обходим все элементы полученной коллекции
     this._inputList.forEach((inputElement) => {
       // каждому полю добавим обработчик события input
@@ -64,7 +62,7 @@ export class FormValidator {
         // Внутри колбэка вызовем checkInputValidity,
         // передав ей форму и проверяемый элемент
         this._checkInputValidity(this._formElement, inputElement, config.inputErrorClass, config.errorClass,);
-        this._toggleBtnState();
+        this.toggleBtnState();
       });
     });
   }
@@ -76,11 +74,9 @@ export class FormValidator {
       });
       // Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы
       this._setEventListenetrs(formElement, config.inputSelector, config.submitButtonSelector, config.inputErrorClass, config.errorClass, config.inactiveButtonClass);
-      setPopup(config.popupSelector);
     });
   }
 }
-
 
 export const config = {
   popupSelector: '.popup',

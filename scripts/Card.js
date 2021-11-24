@@ -1,5 +1,3 @@
-import {openPopup, closePopup, closePreviewButton, previewPopup} from "./index.js";
-
 export class Card {
   constructor(name, link, cardSelector) {
     this._container = document.querySelector(cardSelector);
@@ -25,33 +23,16 @@ export class Card {
 
   _deleteCard() {
     this._element.remove();
-  }
-
-  _previewCardPopup () {
-    openPopup(previewPopup);
-    document.querySelector('.popup-preview__image').src = this._link;
-    document.querySelector('.popup-preview__caption').textContent = this._name;
-  }
-
-  _closePreviewPopup() {
-    closePopup(previewPopup);
+    this._element = null;
   }
 
   _setEventListeners() {
-   // открытие попапа просмотра изображения кликом по изображению
-   this._element.querySelector('.element__image').addEventListener('click', () => {
-    this._previewCardPopup();
-  })
-  // закрытие попапа просмотра изображения кликом на кнопку закрытия
-  closePreviewButton.addEventListener('click', () => {
-    this._closePreviewPopup();
-  })
   // кнопка удаления
-  this._element.querySelector('.element__trash-button').addEventListener('click', () => {
+    this._element.querySelector('.element__trash-button').addEventListener('click', () => {
     this._deleteCard();
   })
   // кнопка лайк
-  this._element.querySelector('.element__like-button').addEventListener('click', () => {
+    this._element.querySelector('.element__like-button').addEventListener('click', () => {
     this._likeCard();
   })
   }
@@ -66,5 +47,4 @@ export class Card {
 
     return this._element;
   }
-
 }
