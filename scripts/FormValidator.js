@@ -68,14 +68,12 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this._formList.forEach((formElement) => {
-      this._formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      // Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы
-      this._setEventListenetrs(formElement, config.inputSelector, config.submitButtonSelector, config.inputErrorClass, config.errorClass, config.inactiveButtonClass);
+    this._formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     });
-  }
+      // Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы
+    this._setEventListenetrs(this._formElement, config.inputSelector, config.submitButtonSelector, config.inputErrorClass, config.errorClass, config.inactiveButtonClass);
+  };
 }
 
 export const config = {

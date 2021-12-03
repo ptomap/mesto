@@ -21,6 +21,9 @@ export const cardsContainer = document.querySelector('.elements');
 export const postingFormElement = document.querySelector('.popup-add-card__form');
 export const titleCardInput = document.querySelector('.popup-add-card__input_type_title');
 export const linkCardInput = document.querySelector('.popup-add-card__input_type_link');
+//Превью изображения
+export const popupPreviewImg = document.querySelector('.popup-preview__image');
+export const popupPreviewCaption = document.querySelector('.popup-preview__caption');
 
 //массив для первичного наполнения
 export const initialCards = [

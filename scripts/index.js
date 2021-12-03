@@ -1,6 +1,6 @@
 import {FormValidator, config} from './FormValidator.js';
 import {Card} from './Card.js';
-import {closePreviewButton, openProfileButton, profileFormElement, initialCards,nameInput,jobInput, profileName, jobName, openPopupCardButton,closePopupCardButton, closeProfileButton, profilePopup, cardPopup, cardsContainer, postingFormElement, titleCardInput, linkCardInput, previewPopup} from "./utils.js";
+import {openProfileButton, profileFormElement, initialCards,nameInput,jobInput, profileName, jobName, openPopupCardButton,closePopupCardButton, closeProfileButton, profilePopup, cardPopup, cardsContainer, postingFormElement, titleCardInput, linkCardInput, previewPopup} from "./utils.js";
 
 //закрытие по esc
 function closeByEsc(evt) {
@@ -22,14 +22,6 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
   document.removeEventListener('click', closeByOverlay);
-}
-
-
-//ПРЕВЬЮ карточек открытие и закрытие
-const previewCardPopup = (name, link) => {
-  openPopup(previewPopup);
-  document.querySelector('.popup-preview__image').src = link;
-  document.querySelector('.popup-preview__caption').textContent = name;
 }
 
 //РЕДАКТИРОВАНИЕ ПРОФИЛЯ ПО КНОПКЕ
@@ -56,9 +48,8 @@ closeProfileButton.addEventListener("click", () => {
 //СОЗДАНИЕ КАРТОЧЕК
 //функция рендера карточек (вставляем в верстку) результат функции создания карточки
 const renderCard = (name, link) => {
-  const card = new Card (name, link,'.card-template').createCard();
+  const card = new Card (name, link,'.card-template', openPopup, closePopup).createCard();
   cardsContainer.prepend(card);
-  document.querySelector('.element__image').addEventListener('click', () => previewCardPopup(name, link)); //превью
 };
 
 
@@ -78,7 +69,7 @@ const cardFormSubmitHandle = (evt) => {
   renderCard(titleCardInput.value, linkCardInput.value);
   postingFormElement.reset();
   closePopup(cardPopup)
-  formAddCardValidator.enableValidation();
+  formAddCardValidator.toggleBtnState();
 };
 postingFormElement.addEventListener('submit', cardFormSubmitHandle);
 
@@ -92,30 +83,17 @@ closePopupCardButton.addEventListener("click", () => {
   closePopup(cardPopup);
 });
 
-
-function closePreviewPopup() {
-  closePopup(previewPopup);
+//закрытие оверлэй
+const closeByOverlay = (evt) => {
+  if (evt.target.classList.contains('popup')) {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 }
-
-  // закрытие попапа просмотра изображения кликом на кнопку закрытия
-closePreviewButton.addEventListener('click', () => {
-  closePreviewPopup();
-})
-
-//массив попапов закрытие оверлэй
-
-const closeByOverlay = () => {
-  const popupList = Array.from(document.querySelectorAll('.popup'));
-  popupList.forEach((popupElement) => {
-    popupElement.addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-            console.log(e.target);
-    console.log(e.currentTarget);
-        closePopup(popupElement);
-      }
-    });
-  })
-}
+//закрытие оверлэй
+profilePopup.addEventListener('mousedown', closeByOverlay);
+cardPopup.addEventListener('mousedown', closeByOverlay);
+previewPopup.addEventListener('mousedown', closeByOverlay);
 
 // валидация формы профиля
 const formProfileValidator = new FormValidator(config, profileFormElement);
