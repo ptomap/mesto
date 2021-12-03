@@ -4,8 +4,6 @@ export class FormValidator {
     this._formElement = formElement;
     this._inputList = Array.from(this._formElement.querySelectorAll(this._config.inputSelector)); // Находим все поля внутри формы, которую передали аргументом
     this._buttonElement = this._formElement.querySelector(this._config.submitButtonSelector);
-    // Находим все формы с указанным классом в DOM
-    this._formList = Array.from(document.querySelectorAll(config.formSelector));
   }
 
   _showError(inputElement, errorElement, inputErrorClass, errorClass) {

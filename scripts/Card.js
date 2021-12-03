@@ -1,4 +1,4 @@
-import {closePreviewButton, previewPopup, popupPreviewImg} from "./utils.js";
+import {closePreviewButton, previewPopup, popupPreviewImg, popupPreviewCaption} from "./utils.js";
 export class Card {
   constructor(name, link, cardSelector, openPopup, closePopup) {
     this._container = document.querySelector(cardSelector);
