@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="icon"  href="./images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mesto</title>
@@ -12,14 +11,14 @@
     <div class="page">
       <header class="header">
         <img
-          src="./images/logo-1.svg"
+          src="<%=require('./images/logo-1.svg')%>"
           alt="Логотип"
           class="header__logo"
         />
       </header>
       <main class="content">
         <section class="profile">
-          <img src="./images/image.jpg" alt="Фотография-аватарка пользователя" class="profile__avatar">
+          <img src="<%=require('./images/image.jpg')%>" alt="Фотография-аватарка пользователя" class="profile__avatar">
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit-button" type="button"></button>
@@ -62,7 +61,7 @@
     </div>
     <div class="popup popup-preview">
       <figure class="popup-preview__card">
-        <button type="button" class="popup-preview__close"></button>
+        <button type="button" class="popup__close popup-preview__close"></button>
         <img
           src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg"
           alt="Картинка"
@@ -85,6 +84,5 @@
         </div>
       </article>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;
@@ -83,4 +83,3 @@ export const config = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error'
 };
-
