@@ -8,7 +8,7 @@ export default class Section {
   renderItems() {
     this._renderedItems.forEach(item => this._renderer(item));
   }
-  //оторый принимает DOM-элемент и добавляет его в контейнер.
+  //принимаем DOM-элемент и добавляет его в контейнер.
   addItem(element) {
     this._container.prepend(element);
   }
