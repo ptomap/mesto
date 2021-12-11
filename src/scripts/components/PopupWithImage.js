@@ -9,6 +9,7 @@ export default class PopupWithImage extends Popup {
   //вставка в попап картинки с src изображения и подписью к картинке
   open(titlePhoto, linkPhoto) {
     this._popupImage.src = linkPhoto;
+    this._popupImage.alt = titlePhoto;
     this._popupName.textContent = titlePhoto;
     super.open();
   }
