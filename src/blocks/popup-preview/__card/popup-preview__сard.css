@@ -1,8 +1,0 @@
-.popup-preview__card {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  max-width: 75vw;
-  max-height: 75vh;
-  position: absolute;
-}
