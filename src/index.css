@@ -49,3 +49,5 @@
 @import url(blocks/popup-preview/__caption/popup-preview__caption.css);
 
 @import url(blocks/popup/__submit/_inactive/popup__submit_inactive.css);
+
+@import url(blocks/form/form__set.css);
