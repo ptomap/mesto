@@ -39,4 +39,5 @@
 .popup-preview__card{display:flex;flex-direction:column;margin:auto;max-height:75vh;max-width:75vw;position:absolute}
 .popup-preview__caption{color:#fff;font-family:Inter,Arial,sans-serif;font-size:12px;line-height:15px;max-height:75vh;max-width:75vw;padding:10px 0 0;text-transform:uppercase}
 .popup__submit_inactive{background:#fff;border:1px solid #000;color:#000;opacity:.2}.popup__submit_inactive:hover{opacity:.2}
+.form__set{border:0;margin:0;padding:0}
 
