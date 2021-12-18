@@ -1,7 +1,7 @@
 import '../../../src/index.css';
 
 import {profileEditBtn, profileFormElement,addCardFormElement, nameInput, jobInput,
-  addNewCardBtn,  initialCards, editAvatarBtn, config, formEditAvatar, avatar} from "../utils/utils.js";
+  addNewCardBtn, editAvatarBtn, config, formEditAvatar, avatar} from "../utils/utils.js";
 import Section from "../components/Section.js";
 import FormValidator from '../components/FormValidator.js';
 import Card from "../components/Card.js";
@@ -70,7 +70,7 @@ function editProfile({ profileName, jobName }) {
 
 // Редакция аватара пользователя
 const editAvatarPopup = new PopupWithForm({
-  popupSelector: '.popup_edit-avatar',
+  popupSelector: '.popup-edit-avatar',
   handleFormSubmit: (data) => {
     editAvatarPopup.loading(true);
     api.editAvatar(data)
@@ -100,7 +100,7 @@ profileEditBtn.addEventListener('click', () => {
 
 // Кнопка редактировать аватар пользователя
 editAvatarBtn.addEventListener('click', () => {
-  formEditAvatarValidator.toggleButtonState();
+  formEditAvatarValidator.toggleBtnState();
   editAvatarPopup.open();
 });
 
@@ -161,7 +161,7 @@ const cardsList = new Section({
 
 // Подтверждение удаления карточки
 const deleteCardPopup = new PopupWithConfirmation({
-  popupSelector: '.popup_delete-card'
+  popupSelector: '.popup-delete-card'
 });
 deleteCardPopup.setEventListeners();
 

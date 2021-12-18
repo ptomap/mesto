@@ -11,37 +11,9 @@ export const addCardFormElement = document.querySelector('.popup-add-card__form'
 //Аватар
 export const editAvatarBtn = document.querySelector('.profile__avatar-button');
 // Форма редактирования аватара пользователя
-export const formEditAvatar = document.querySelector('.popup_edit-avatar__form');
+export const formEditAvatar = document.querySelector('.popup-edit-avatar__form');
 // аватар пользователя
 export const avatar = document.querySelector('.profile__avatar');
-
-//массив для первичного наполнения
-export const initialCards = [
-  {
-    titlePhoto: 'Архыз',
-    linkPhoto: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    titlePhoto: 'Челябинская область',
-    linkPhoto: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    titlePhoto: 'Иваново',
-    linkPhoto: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    titlePhoto: 'Камчатка',
-    linkPhoto: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    titlePhoto: 'Холмогорский район',
-    linkPhoto: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    titlePhoto: 'Байкал',
-    linkPhoto: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
 
 export const config = {
   popupSelector: '.popup',
