@@ -11,7 +11,7 @@ export default class Api {
     return Promise.reject(`Ошибка: ${res.status}`)
   }
 
-  // Получение карточек с сервера
+  // Получаем карточки с сервера
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers

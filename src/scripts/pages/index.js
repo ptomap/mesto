@@ -24,7 +24,7 @@ const api = new Api({
 let userId;
 
 
-// Карточки и юзер с сервера
+// карточки и юзер с сервера
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
     userInfo.setUserInfo(userData);
@@ -68,7 +68,7 @@ function editProfile({ profileName, jobName }) {
   jobInput.value = jobName;
 };
 
-// Редакция аватара пользователя
+// редакция аватара пользователя
 const editAvatarPopup = new PopupWithForm({
   popupSelector: '.popup-edit-avatar',
   handleFormSubmit: (data) => {
@@ -88,7 +88,7 @@ const editAvatarPopup = new PopupWithForm({
 });
 editAvatarPopup.setEventListeners();
 
-// Кнопка редактировать
+// кнопка редактировать
 profileEditBtn.addEventListener('click', () => {
   const info = userInfo.getUserInfo();
   editProfile({
@@ -98,7 +98,7 @@ profileEditBtn.addEventListener('click', () => {
   editProfilePopup.open();
 });
 
-// Кнопка редактировать аватар пользователя
+// кнопка редактировать аватар пользователя
 editAvatarBtn.addEventListener('click', () => {
   formEditAvatarValidator.toggleBtnState();
   editAvatarPopup.open();
@@ -152,14 +152,13 @@ const createCard = (data) => {
   return cardElement;
 };
 
-// карточкииз массива
 const cardsList = new Section({
   renderer: (card) => {
     cardsList.addItem(createCard(card));
   },
 }, '.elements');
 
-// Подтверждение удаления карточки
+// подтверждение удаления карточки
 const deleteCardPopup = new PopupWithConfirmation({
   popupSelector: '.popup-delete-card'
 });

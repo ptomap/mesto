@@ -5,7 +5,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._userId = userId;
     this._cardId = data._id;
-    this._cardOwnerId = data.owner._id;
+    this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
     this._likes = data.likes;
@@ -63,7 +63,7 @@ export default class Card {
     this._element.querySelector('.element__image').src = this._linkPhoto;
     this._element.querySelector('.element__image').alt = this._titlePhoto;
     this._element.querySelector('.element__title').textContent = this._titlePhoto;
-    this._hasDeleteBtn();
+    this._hideDeleteBtn();
     this._isCardLiked();
     this._likesNumber.textContent = this._likes.length;
     this._setEventListeners();
@@ -83,13 +83,13 @@ export default class Card {
 // кол-во лайков
   handleLikeCard(data) {
     this._likes = data.likes;
-    this._likesNumber.textContent = this._likes.length;
-    this._likeBtn.classList.toggle('element__like-button_active');
+    this._element.querySelector('.element__likes-number').textContent = this._likes.length;
+    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
   }
 
 // убрать кнопку удаления
-  _hasDeleteBtn() {
-    if (this._userId !== this._cardOwnerId) {
+  _hideDeleteBtn() {
+    if (this._userId !== this._ownerId) {
       this._deleteBtn.remove();
     }
   }
