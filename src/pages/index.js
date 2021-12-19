@@ -76,7 +76,6 @@ const editAvatarPopup = new PopupWithForm({
     api.editAvatar(data)
       .then((data) => {
         userInfo.setUserInfo(data);
-        userId = data.userId;
         editAvatarPopup.close();
       })
       .catch((err) => {
