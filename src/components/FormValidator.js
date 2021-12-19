@@ -29,20 +29,20 @@ export default class FormValidator {
     }
   }
 
-  _hasInvalidInput() {
+  _checkHasInvalidInput() {
     return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
-  _hasInputValue() {
+  _checkHasInputValue() {
     return this._inputList.every((inputElement) => {
       return !inputElement.value.length === 0;
     });
   }
 
   toggleBtnState() {
-    if (this._hasInvalidInput(this._inputList) || this._hasInputValue(this._inputList)) {
+    if (this._checkHasInvalidInput(this._inputList) || this._checkHasInputValue(this._inputList)) {
       this._buttonElement.classList.add(config.inactiveButtonClass);
       this._buttonElement.disabled = true;
     } else {
@@ -70,7 +70,7 @@ export default class FormValidator {
       evt.preventDefault();
     });
       // Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы
-    this._setEventListenetrs(this._formElement, config.inputSelector, config.submitButtonSelector, config.inputErrorClass, config.errorClass, config.inactiveButtonClass);
+    this._setEventListenetrs();
   };
 }
 

@@ -1,4 +1,4 @@
-import '../../../src/index.css';
+import './index.css';
 
 import {profileEditBtn, profileFormElement,addCardFormElement, nameInput, jobInput,
   addNewCardBtn, editAvatarBtn, config, formEditAvatar, avatar} from "../utils/utils.js";
@@ -75,7 +75,8 @@ const editAvatarPopup = new PopupWithForm({
     editAvatarPopup.loading(true);
     api.editAvatar(data)
       .then((data) => {
-        avatar.src = data.avatar;
+        userInfo.setUserInfo(data);
+        userId = data.userId;
         editAvatarPopup.close();
       })
       .catch((err) => {

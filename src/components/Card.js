@@ -60,11 +60,11 @@ export default class Card {
     this._deleteBtn = this._element.querySelector('.element__trash-button');
 
 
-    this._element.querySelector('.element__image').src = this._linkPhoto;
-    this._element.querySelector('.element__image').alt = this._titlePhoto;
+    this._image.src = this._linkPhoto;
+    this._image.alt = this._titlePhoto;
     this._element.querySelector('.element__title').textContent = this._titlePhoto;
     this._hideDeleteBtn();
-    this._isCardLiked();
+    this._checkCardLiked();
     this._likesNumber.textContent = this._likes.length;
     this._setEventListeners();
 
@@ -72,7 +72,7 @@ export default class Card {
   }
 
 // есть ли лайк
-  _isCardLiked() {
+  _checkCardLiked() {
     if (this._likes.some((user) => {
     return this._userId === user._id;
     })) {
@@ -83,8 +83,8 @@ export default class Card {
 // кол-во лайков
   handleLikeCard(data) {
     this._likes = data.likes;
-    this._element.querySelector('.element__likes-number').textContent = this._likes.length;
-    this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
+    this._likesNumber.textContent = this._likes.length;
+    this._likeBtn.classList.toggle('element__like-button_active');
   }
 
 // убрать кнопку удаления
